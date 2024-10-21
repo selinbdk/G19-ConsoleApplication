@@ -4,6 +4,7 @@ public class ConsoleApplication {
     public static void main(String[] args) {
         displayIntro();
 		displayMenu();
+		subMenu();
 
     }
 
@@ -116,7 +117,116 @@ public class ConsoleApplication {
 
 	public static void optionA() {}
 
-	public static void optionB() {}
+	public static void optionB() {
+
+		public static void subMenu() {
+		boolean operationResult=true;
+		String operation2="";
+		System.out.println("\nMENU");
+		Scanner input2=new Scanner(System.in);
+		
+		System.out.println(
+				  " [A] Transpose,\n"
+				+ " [B] Inverse,\n"
+				+ " [C] Matrix Multiplication,\n"
+				+ " [D] Element-wise Multiplication,\n"
+				+ " [E]  Return to the Main Menu.\n");
+		
+
+		do {
+
+			if(!operationResult){
+				System.out.print("s:Please enter a valid operation character:");
+
+			}else{
+				System.out.print("Select the action you want to perform:");
+			}
+			operation2 =input2.nextLine();
+			operationResult= ((operation2.equals("A")) || (operation2.equals("B")) || (operation2.equals("C")) || (operation2.equals("D")) ||(operation2.equals("E")));
+			
+		} while (!operationResult);
+
+
+		switch (operation2) {
+			case "A":
+				transpose();
+				break;
+			case "B":
+				inverse();
+				break;
+			case "C":
+				matrixMultiplation();
+				break;
+
+			case "D":
+			    element_wiseMultiplication();
+				break;
+			case "E":
+				returnMenu();
+				break;
+
+			default:
+		
+		}
+
+	}	
+
+	public static void transpose() {
+		
+		Scanner input3 = new Scanner(System.in);
+		int rows = 0;
+		int columns = 0;
+
+		System.out.print("Please enter a matrix row.");
+		rows = input3.nextInt();
+		// bool yap
+
+               
+
+  
+		
+	}
+
+	
+	public static void inverse() {
+
+        //
+	}
+
+	public static void matrixMultiplation() {
+      //
+
+	}
+
+	public static void element_wiseMultiplication() {
+		//
+	}
+
+	public static void returnMenu(){
+         //
+	}
+//--------------------------------------------------------------------------------------------
+	public static void optionA() {
+
+	}
+
+	
+	public static void optionB() {
+
+      subMenu();
+	}
+
+	public static void optionC() {}
+
+	public static void optionD() {
+		
+	}
+
+	public static void optionE(){
+
+	}
+
+	}
 
 	public static void optionC() {}
 
