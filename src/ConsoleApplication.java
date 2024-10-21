@@ -114,11 +114,7 @@ public class ConsoleApplication {
 		
 		
 	}
-
-	public static void optionA() {}
-
-	public static void optionB() {
-
+	
 		public static void subMenu() {
 		boolean operationResult=true;
 		String operation2="";
@@ -205,6 +201,8 @@ public class ConsoleApplication {
 	public static void returnMenu(){
          //
 	}
+
+	
 //--------------------------------------------------------------------------------------------
 	public static void optionA() {
 
@@ -218,18 +216,8 @@ public class ConsoleApplication {
 
 	public static void optionC() {}
 
-	public static void optionD() {
-		
-	}
 
-	public static void optionE(){
-
-	}
-
-	}
-
-	public static void optionC() {}
-
+	
 	public static void optionD() {
 		char[][] board= {{'1','2','3'},{'4','5','6'},{'7','8','9'}};
 		printGameBoard(board);
