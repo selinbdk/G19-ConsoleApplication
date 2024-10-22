@@ -169,19 +169,89 @@ public class ConsoleApplication {
 
 	public static void transpose() {
 		
-		Scanner input3 = new Scanner(System.in);
-		int rows = 0;
-		int columns = 0;
 
-		System.out.print("Please enter a matrix row.");
-		rows = input3.nextInt();
-		// bool yap
+        Scanner input3 = new Scanner(System.in);
+
+        //part1: get valid rows.
+        int rows;
+        do {
+            System.out.print("Please enter a valid rows number:");
+            while (!input3.hasNextInt()) { // to use for positive number (valid number)
+                System.out.println("Invalid input please enter a number:");
+                input3.next(); // delete invalid input.
+            }
+            rows = input3.nextInt();
+        } while (rows <= 0); // check positive number
+
+        // part2: get valid columns.
+        int columns;
+        do {
+            System.out.print("Please enter a valid columns number:");
+            while (!input3.hasNextInt()) { // valid integer number control.
+                System.out.println("Invalid input please enter a number:");
+                scanner.next(); // Geçersiz girdiyi temizler
+            }
+            columns = input3.nextInt();
+        } while (columns <= 0); // check positive number
+
+        // part3: do matrix
+        
+        int[][] matrix = new int[rows][columns];
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                boolean validInput = false;
+                do {
+                    System.out.print("Enter  [" + i + "][" + j + "] values: ");
+                    if (scanner.hasNextInt()) { // check enter a valid input or not.
+                        matrix[i][j] = input3.nextInt();
+                        validInput = true;
+                    } else {
+                        System.out.println("Invalid input. Please enter a positive integer number:");
+                        input3.next(); // delete invalid input
+                    }
+                } while (!validInput); // it continue to enter valid input.
+            }
+        }
+
+        //part4: print users matrix
+        System.out.println("Yours matrix:");
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+		//part5: do transpose
+		int[][] transposeMatrix = new int[columns][rows];
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                transposeMatrix[j][i] = matrix[i][j];
+            }
+        }
+		//print transpose matrix
+        System.out.println("Transpose matrix:");
+        for (int i = 0; i < columns; i++) {
+            for (int j = 0; j < rows; j++) {
+                System.out.print(transposeMatrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+        input3.close();
+    }
+}
+        
+
+		
+
 
                
 
   
 		
-	}
+	
 
 	
 	public static void inverse() {
@@ -246,17 +316,6 @@ public class ConsoleApplication {
 	public static void optionE() {}
 
 	
-	
-
-
-
-
-
-
-
-
-
-
 
 
 
