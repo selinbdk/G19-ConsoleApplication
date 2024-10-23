@@ -6,6 +6,7 @@ public class ConsoleApplication {
 		
         displayIntro();
 		displayMenu();
+		subMenu();
 
     }
 
@@ -116,6 +117,7 @@ public class ConsoleApplication {
 		
 	}
 	
+<<<<<<< HEAD
 	public static int maximum(int x,int y) {
 		int maximumValue=x;
 		if(y>x) {
@@ -126,13 +128,181 @@ public class ConsoleApplication {
 		return maximumValue;
 		
 	}
+=======
+		public static void subMenu() {
+		boolean operationResult=true;
+		String operation2="";
+		System.out.println("\nMENU");
+		Scanner input2=new Scanner(System.in);
+		
+		System.out.println(
+				  " [A] Transpose,\n"
+				+ " [B] Inverse,\n"
+				+ " [C] Matrix Multiplication,\n"
+				+ " [D] Element-wise Multiplication,\n"
+				+ " [E]  Return to the Main Menu.\n");
+		
+>>>>>>> 89b6d828b045f40d9a0c370532d4ffd15d94e706
 
-	public static void optionA() {}
+		do {
 
-	public static void optionB() {}
+			if(!operationResult){
+				System.out.print("s:Please enter a valid operation character:");
+
+			}else{
+				System.out.print("Select the action you want to perform:");
+			}
+			operation2 =input2.nextLine();
+			operationResult= ((operation2.equals("A")) || (operation2.equals("B")) || (operation2.equals("C")) || (operation2.equals("D")) ||(operation2.equals("E")));
+			
+		} while (!operationResult);
+
+
+		switch (operation2) {
+			case "A":
+				transpose();
+				break;
+			case "B":
+				inverse();
+				break;
+			case "C":
+				matrixMultiplation();
+				break;
+
+			case "D":
+			    element_wiseMultiplication();
+				break;
+			case "E":
+				returnMenu();
+				break;
+
+			default:
+		
+		}
+
+	}	
+
+	public static void transpose() {
+		
+
+        Scanner input3 = new Scanner(System.in);
+
+        //part1: get valid rows.
+        int rows;
+        do {
+            System.out.print("Please enter a valid rows number:");
+            while (!input3.hasNextInt()) { // to use for positive number (valid number)
+                System.out.println("Invalid input please enter a number:");
+                input3.next(); // delete invalid input.
+            }
+            rows = input3.nextInt();
+        } while (rows <= 0); // check positive number
+
+        // part2: get valid columns.
+        int columns;
+        do {
+            System.out.print("Please enter a valid columns number:");
+            while (!input3.hasNextInt()) { // valid integer number control.
+                System.out.println("Invalid input please enter a number:");
+                scanner.next(); // Geçersiz girdiyi temizler
+            }
+            columns = input3.nextInt();
+        } while (columns <= 0); // check positive number
+
+        // part3: do matrix
+        
+        int[][] matrix = new int[rows][columns];
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                boolean validInput = false;
+                do {
+                    System.out.print("Enter  [" + i + "][" + j + "] values: ");
+                    if (scanner.hasNextInt()) { // check enter a valid input or not.
+                        matrix[i][j] = input3.nextInt();
+                        validInput = true;
+                    } else {
+                        System.out.println("Invalid input. Please enter a positive integer number:");
+                        input3.next(); // delete invalid input
+                    }
+                } while (!validInput); // it continue to enter valid input.
+            }
+        }
+
+        //part4: print users matrix
+        System.out.println("Yours matrix:");
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+		//part5: do transpose
+		int[][] transposeMatrix = new int[columns][rows];
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                transposeMatrix[j][i] = matrix[i][j];
+            }
+        }
+		//print transpose matrix
+        System.out.println("Transpose matrix:");
+        for (int i = 0; i < columns; i++) {
+            for (int j = 0; j < rows; j++) {
+                System.out.print(transposeMatrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+        input3.close();
+    }
+}
+        
+
+		
+
+
+               
+
+  
+		
+	
+
+	
+	public static void inverse() {
+
+        //
+	}
+
+	public static void matrixMultiplation() {
+      //
+
+	}
+
+	public static void element_wiseMultiplication() {
+		//
+	}
+
+	public static void returnMenu(){
+         //
+	}
+
+	
+//--------------------------------------------------------------------------------------------
+	public static void optionA() {
+
+	}
+
+	
+	public static void optionB() {
+
+      subMenu();
+	}
 
 	public static void optionC() {}
 
+
+	
 	public static void optionD() {
 		char[][] board= {{'1','2','3'},{'4','5','6'},{'7','8','9'}};
 		String[]playerNames= new String[2];
@@ -456,10 +626,13 @@ public class ConsoleApplication {
 	public static void optionE() {}
 
 	
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> 89b6d828b045f40d9a0c370532d4ffd15d94e706
 
 
 
