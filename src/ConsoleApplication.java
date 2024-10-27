@@ -315,15 +315,125 @@ public class ConsoleApplication {
     }
 
 
-	public static void inverse() {
+	public static void inverse() {//--------------------------------------------------
+/*
+		//matris alınırken row ve column un değerinin aynı olup olmadığı kontrol edilecek eğer aynıysa hesaplanıcak yoksa tekrar değer istenecek.
+		double[][] matrix = {};// matris alınacak.
 
-        //
+        double determinant = calculateDeterminant(matrix);
+
+        if (determinant != 0) {
+            System.out.println("The determinant of the matrix is different from zero, its inverse can be calculated:");
+        } else {
+            System.out.println("The determinant of the matrix is zero, the inverse of the matrix cannot be calculated .");
+        }
+    }
+
+    public static double calculateDeterminant(double[][] matrix) {
+        int n = matrix.length;
+
+        if (n == 1) {
+            
+            return matrix[0][0];
+        }
+        if (n == 2) {
+        
+            return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+        }
+
+		double determinant = 0;
+		//devamında diğer değrler için hesaplanacak.
+
+        //----------------------------------------------------------
+	}
+*/
+	}
+	public static void matrixMultiplation() {// burdaki eksiklik inputları harf olarakta girilebilirbunu engellemek lazım.
+      //-------------------------------------------
+	  
+
+        Scanner input5 = new Scanner(System.in);
+        int m1, n1, m2, n2;
+
+
+        while (true) {
+            System.out.print("Please enter a first matrix row:");
+            m1 = input5.nextInt();
+            System.out.print("Please enter a first matrix columns:");
+            n1 = input5.nextInt();
+
+            System.out.print("Please enter a second matrix row:");
+            m2 = input5.nextInt();
+            System.out.print("Please enter a second matrix columns:");
+            n2 = input5.nextInt();
+
+            // check inputs for square matrix
+            if (n1 == m2) {
+                break;
+            } else {
+                System.out.println("Please valid input.First matrix columns must equal second matrix rows input. Try again:");
+            }
+        }
+
+        int[][] matrixA = new int[m1][n1];
+        int[][] matrixB = new int[m2][n2];
+
+        // get first matrixs value
+        System.out.println("Please enter first matrix values:");
+        for (int i = 0; i < m1; i++) {
+            for (int j = 0; j < n1; j++) {
+                System.out.print("matrixA[" + i + "][" + j + "] = ");
+                matrixA[i][j] = input5.nextInt();
+            }
+        }
+
+        // get second matrix value.
+        System.out.println("Please enter second matrix values:");
+        for (int i = 0; i < m2; i++) {
+            for (int j = 0; j < n2; j++) {
+                System.out.print("matrixB[" + i + "][" + j + "] = ");
+                matrixB[i][j] = input5.nextInt();
+            }
+        }
+
+        // calculation multiply
+        int[][] result = multiplyMatrices(matrixA, matrixB);
+
+        // print result on the screen 
+        System.out.println("Calculated matrix result:");
+        for (int[] row : result) {
+            for (int val : row) {
+                System.out.print(val + " ");
+            }
+            System.out.println();
+        }
 	}
 
-	public static void matrixMultiplation() {
-      //
+    public static int[][] multiplyMatrices(int[][] mat1, int[][] mat2) {
+        int m = mat1.length;          // first matrixs rows value
+        int n = mat1[0].length;       // first matrixs columns value
+        int p = mat2[0].length;       // second matrixs columns value
 
-	}
+        int[][] result = new int[m][p];
+
+        //matrix multiplying 
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < p; j++) {
+                result[i][j] = 0;
+                for (int k = 0; k < n; k++) {
+                    result[i][j] += mat1[i][k] * mat2[k][j];
+                }
+            }
+        }
+
+        return result;
+    
+
+}
+
+	  //---------------------------------------
+
+	
 
 	public static void element_wiseMultiplication() {
 		//
