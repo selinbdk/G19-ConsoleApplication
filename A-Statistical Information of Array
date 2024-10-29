@@ -1,0 +1,124 @@
+import java.util.Scanner;
+
+public class ArrayStatistics {
+
+    //Method to sort an array
+    public static void SortArray(double[] array) {
+        int n = array.length;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (array[j] > array[j + 1]) {
+                    
+                    double temp = array[j]; //swapping
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+    // Method to find the MEDIAN
+    public static double findMedian(double[] array) {
+        SortArray(array); // Sort the array
+        
+        int size = array.length;
+        if (size % 2 == 1) { // Odd size
+            return array[size / 2];
+        } else { // Even size
+            return (array[(size / 2) - 1] + array[size / 2]) / 2;
+        }
+    }
+
+    // Method to calculate the ARITHMETIC MEAN
+    public static double arithmeticMean(double[] array) {
+        double sum = 0;
+        for (double num : array) {
+            sum += num;
+        }
+        return sum / array.length;
+    }
+
+   // Method to calculate the GEOMETRIC MEAN  
+    public static double geometricMean(double[] array) {
+    double product = 1.0;
+    for (double num : array) {
+        if (num < 0) {
+            return -1; // If any negative value, return -1
+        }
+        product *= num;
+    }
+
+    // calculating the nth root
+    int size = array.length;
+    double geometricMean = Math.pow(product, 1.0 / size);
+
+    return geometricMean;
+}
+
+// Method to calculate the HARMONIC MEAN
+public static double harmonicMean(double[] array, int size, int index, double sum) {
+    
+    // checking if all elements are positive
+    for (double num : array) {
+        if (num <= 0) {
+            return -1; //if negative number or zero as input
+        }
+    }
+
+    if (index == size) { // base case for recursion
+        return size / sum;
+    }
+    
+    return harmonicMean(array, size, index + 1, sum + 1 / array[index]); // recursive call
+}
+
+    //------------MAIN--------------
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int size;
+        
+        //Getting the array size
+        do {
+            System.out.print("Enter the size of the array (positive integer): ");
+            size = scanner.nextInt();
+            if (size <= 0) {
+                System.out.println("Size must be a positive integer.");
+            }
+        } while (size <= 0);
+
+        double[] array = new double[size]; // creating an array
+        
+        //Filling the array
+        for (int i = 0; i < size; i++) {
+            System.out.print("Enter element: ");
+            array[i] = scanner.nextDouble();
+        }
+        
+        //Doing calculations (calling methods)
+        double median = findMedian(array);
+        double arithmetic = arithmeticMean(array);
+        double geometric = geometricMean(array);
+        double harmonic = harmonicMean(array, size, 0, 0);
+
+        //Showing the results
+        System.out.println("--------------------");
+        System.out.println("\n The Calculations: \n");
+        System.out.println("Median: " + median);
+        System.out.println("Arithmetic Mean: " + arithmetic);
+    
+        if (geometric != -1) {
+            System.out.println("Geometric Mean: " + geometric);
+        } else {
+            System.out.println("Geometric mean can only be calculated for positive numbers or zero.");
+        }
+    
+        if (harmonic != -1) {
+            System.out.println("Harmonic Mean: " + harmonic);
+        } else {
+            System.out.println("Harmonic mean can only be calculated for positive numbers.");
+        }
+        System.out.println("--------------------");
+        
+        scanner.close();
+    }
+}
