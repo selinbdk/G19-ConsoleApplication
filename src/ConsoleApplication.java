@@ -14,14 +14,14 @@ public class ConsoleApplication {
 		
 		String[] teamMembers= {
 				
-		"*******************",
-		"*     GROUP19     *",
-		"*   SELIN BUDAK   *",
-		"* TUGBA CAGLAGONUL*",
-		"*   BEYZA AKIN    *",
-		"* BERKAY KARATAS  *",
-		"* FURKAN KAPUSUZ  *",
-		"*******************"
+		"********************",
+		"*     GROUP19      *",
+		"*   SELIN BUDAK    *",
+		"* TUGBA CAGLAGONUL *",
+		"* EKMEL BEYZA AKIN *",
+		"* BERKAY KARATAS   *",
+		"* FURKAN KAPUSUZ   *",
+		"********************"
 				
 		};
 
@@ -127,9 +127,186 @@ public class ConsoleApplication {
 		return maximumValue;
 		
 	}
+	
+	
 
-	public static void optionA() {}
+	public static void optionA() {
+		
+		Scanner scanner = new Scanner(System.in);
+		String answer="";
+        int size=0;
+        boolean isAnswerValid=true;
+        
+        //Getting the array size
+        do {
+        	try {
+            System.out.print("Enter the size of the array (positive integer): ");
+            answer= scanner.nextLine();
+       	 	size= Integer.parseInt(answer);
+       	 	isAnswerValid=true;
+       	 	
+            if (size <= 0) {
+                System.out.println("Size must be a positive integer.");
+                isAnswerValid=false;
+               
+            }
+        	}catch(NumberFormatException e) {
+        		System.out.println(e);
+        		isAnswerValid=false;
+        		
+        	}
+            
+        } while (!isAnswerValid);
+        
+        double[] array = new double[size]; // creating an array
+        
+        
+        
+        //Filling the array
+        for (int i = 0; i < size; i++) {
+        	
+        	do {
+            	try {
+            	 if (isAnswerValid==false) { 
+                	 System.out.println("Invalid input. Please enter a double number:");
+                    
+                 }else {
+                	 System.out.print("Enter element: ");
+                 }
+                 answer=scanner.nextLine();
+                 array[i] = Double.parseDouble(answer);
+            	 isAnswerValid=true;
+            	
+            	 }catch(NumberFormatException e) {
+            		 System.out.println(e);
+            		 isAnswerValid=false;
+            	 }
+          
+              } while (!isAnswerValid); 
+        	
+        }
+        
+        //Doing calculations (calling methods)
+        double median = findMedian(array);
+        double arithmetic = arithmeticMean(array);
+        double geometric = geometricMean(array);
+        double harmonic = harmonicMean(array, size, 0, 0);
+        //Showing the results
+        System.out.println("--------------------");
+        System.out.println("\n The Calculations: \n");
+        System.out.println("Median: " + median);
+        System.out.println("Arithmetic Mean: " + arithmetic);
+    
+        if (geometric != -1) {
+            System.out.println("Geometric Mean: " + geometric);
+        } else {
+            System.out.println("Geometric mean can only be calculated for positive numbers or zero.");
+        }
+    
+        if (harmonic != -1) {
+            System.out.println("Harmonic Mean: " + harmonic);
+        } else {
+            System.out.println("Harmonic mean can only be calculated for positive numbers.");
+        }
+        System.out.println("--------------------");
+        
+        
 
+	       int isReturned= returnPreviousMenu();
+	       
+			if(isReturned==1) {
+				displayMenu();
+				
+			}
+			else{
+				optionA();
+			}
+        
+        
+        
+        scanner.close();
+    
+		
+	}
+	
+	
+	 //Method to sort an array
+    public static void SortArray(double[] array) {
+        int n = array.length;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (array[j] > array[j + 1]) {
+                    
+                    double temp = array[j]; //swapping
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                }
+            }
+        }
+    }
+    
+    
+    // Method to find the MEDIAN
+    public static double findMedian(double[] array) {
+        SortArray(array); // Sort the array
+        
+        int size = array.length;
+        if (size % 2 == 1) { // Odd size
+            return array[size / 2];
+        } else { // Even size
+            return (array[(size / 2) - 1] + array[size / 2]) / 2;
+        }
+    }
+    
+    
+ // Method to calculate the ARITHMETIC MEAN
+    public static double arithmeticMean(double[] array) {
+        double sum = 0;
+        for (double num : array) {
+            sum += num;
+        }
+        return sum / array.length;
+    }
+
+    
+    
+ // Method to calculate the GEOMETRIC MEAN  
+    public static double geometricMean(double[] array) {
+    double product = 1.0;
+    for (double num : array) {
+        if (num < 0) {
+            return -1; // If any negative value, return -1
+        }
+        product *= num;
+    }
+    // calculating the nth root
+    int size = array.length;
+    double geometricMean = Math.pow(product, 1.0 / size);
+    return geometricMean;
+}
+    
+    
+    
+ // Method to calculate the HARMONIC MEAN
+    public static double harmonicMean(double[] array, int size, int index, double sum) {
+        
+        // checking if all elements are positive
+        for (double num : array) {
+            if (num <= 0) {
+                return -1; //if negative number or zero as input
+            }
+        }
+        if (index == size) { // base case for recursion
+            return size / sum;
+        }
+        
+        return harmonicMean(array, size, index + 1, sum + 1 / array[index]); // recursive call
+    }
+	
+	
+	
+	
+	
 
 	public static void optionB() {
 		subMenu();
@@ -172,7 +349,7 @@ public class ConsoleApplication {
 				inverse();
 				break;
 			case "c":
-				matrixMultiplation();
+				matrixMultiplication();
 				break;
 
 			case "d":
@@ -192,6 +369,7 @@ public class ConsoleApplication {
 
 	public static void transpose() {
 		
+		System.out.println("\n[a] Transpose");
 
         Scanner input3 = new Scanner(System.in);
         boolean isAnswerValid=true;
@@ -312,6 +490,8 @@ public class ConsoleApplication {
             System.out.println();
         }
 
+		
+
     }
 
 
@@ -320,20 +500,528 @@ public class ConsoleApplication {
         //
 	}
 
-	public static void matrixMultiplation() {
-      //
+	public static void matrixMultiplication() {
+		
+		System.out.println("\n[c] Matrix Multiplication\n");
+	      
+	        Scanner input5 = new Scanner(System.in);
+	        int m1=0;
+	        int m2=0;
+	        int n1=0;
+	        int n2=0;
+
+	        boolean isAnswerValid=true;
+	        String answer="";
+	        
+	        
+	        do {
+	            try {
+	            	
+		        	if(isAnswerValid==false) {
+		        		System.out.println("Please enter a valid row number for first matrix:");
+		        		
+		        	}
+		        	else {
+		        		 System.out.print("Please enter a first matrix row:");
+			        	
+		        	}
+		        	
+		        	answer=input5.nextLine();
+		        	m1= Integer.parseInt(answer);
+		        	if(m1<=0) {
+		        		isAnswerValid=false;
+		        	}
+		        	else {
+		        		isAnswerValid=true;
+		        	}
+		        
+	            }catch(NumberFormatException e) {
+	            	System.out.println(e);
+	            	isAnswerValid=false;
+	            	
+	            	}
+	            
+	        } while (!isAnswerValid);
+	        
+	        
+	        
+	        do {
+	            try {
+	            	
+		        	if(isAnswerValid==false) {
+		        		System.out.println("Please enter a valid column number for first matrix:");
+		        		
+		        	}
+		        	else {
+		        		 System.out.print("Please enter a first matrix column:");
+			        	
+		        	}
+		        	
+		        	answer=input5.nextLine();
+		        	n1= Integer.parseInt(answer);
+		        	if(n1<=0) {
+		        		isAnswerValid=false;
+		        	}
+		        	else {
+		        		isAnswerValid=true;
+		        	}
+		        	
+		        
+	            }catch(NumberFormatException e) {
+	            	System.out.println(e);
+	            	isAnswerValid=false;
+	            	
+	            	}
+	            
+	        } while (!isAnswerValid);
+	        
+	        
+	        do {
+	            try {
+	            	
+		        	if(isAnswerValid==false) {
+		        		System.out.println("Please enter a valid row number for second matrix:");
+		        		
+		        	}
+		        	else {
+		        		 System.out.print("Please enter a second matrix row:");
+			        	
+		        	}
+		        	
+		        	answer=input5.nextLine();
+		        	m2= Integer.parseInt(answer);
+		        	if(m2<=0) {
+		        		isAnswerValid=false;
+		        	}
+		        	else {
+		        		isAnswerValid=true;
+		        	}
+		        
+		        
+	            }catch(NumberFormatException e) {
+	            	System.out.println(e);
+	            	isAnswerValid=false;
+	            	
+	            	}
+	            
+	        } while (!isAnswerValid);
+	        
+	    
+	        do {
+	            try {
+	            	
+		        	if(isAnswerValid==false) {
+		        		System.out.println("Please enter a valid column number for second matrix:");
+		        		
+		        	}
+		        	else {
+		        		 System.out.print("Please enter a second matrix column:");
+			        	
+		        	}
+		        	
+		        	answer=input5.nextLine();
+		        	n2= Integer.parseInt(answer);
+		        	if(n2<=0) {
+		        		isAnswerValid=false;
+		        	}
+		        	else {
+		        		isAnswerValid=true;
+		        	}
+		        	
+		        
+	            }catch(NumberFormatException e) {
+	            	System.out.println(e);
+	            	isAnswerValid=false;
+	            	
+	            	}
+	            
+	        } while (!isAnswerValid);
+        
+       
+    	 if(n1!=m2) {
+    		 System.out.println("Please valid input.First matrix columns must equal second matrix rows input.");
+    		 matrixMultiplication();
+    		 
+    	 }else {
+
+    		 
+ 	        double[][] matrix1 = new double[m1][n1];
+ 	        double[][] matrix2 = new double[m2][n2];
+
+ 	        
+ 	        boolean validInput=true;
+ 	        
+ 	        // get first matrix's value
+ 	        System.out.println("Please enter first matrix values:");
+ 	        for (int i = 0; i < m1; i++) {
+ 	            for (int j = 0; j < n1; j++) {
+ 	            	
+ 	            	 do {
+ 	                   	try {
+ 	                   	 if (validInput==false) { 
+ 	                       	 System.out.println("Invalid input. Please enter a double number:");
+ 	                           
+ 	                        }else {
+ 	                       	 System.out.printf("Enter matrix1[%d][%d] values: ", i,j);
+ 	                        }
+ 	              
+ 	                     answer=input5.nextLine();
+ 	                   	 matrix1[i][j] = Double.parseDouble(answer);
+ 	                   	 validInput=true;
+ 	                   	
+ 	                   	 }catch(NumberFormatException e) {
+ 	                   		 System.out.println(e);
+ 	                   		 validInput=false;
+ 	                   	 }
+ 	                 
+ 	                     } while (!validInput); 
+ 	               
+ 	            	
+ 	            }
+ 	        }
+
+ 	        // get second matrix value.
+ 	        System.out.println("Please enter second matrix values:");
+ 	        for (int i = 0; i < m2; i++) {
+ 	            for (int j = 0; j < n2; j++) {
+ 	            	
+ 	            	 do {
+  	                   	try {
+  	                   	 if (validInput==false) { 
+  	                       	 System.out.println("Invalid input. Please enter a double number:");
+  	                           
+  	                        }else {
+  	                       	 System.out.printf("Enter matrix2[%d][%d] values: ", i,j);
+  	                        }
+  	              
+  	                     answer=input5.nextLine();
+  	                   	 matrix2[i][j] = Double.parseDouble(answer);
+  	                   	 validInput=true;
+  	                   	
+  	                   	 }catch(NumberFormatException e) {
+  	                   		 System.out.println(e);
+  	                   		 validInput=false;
+  	                   	 }
+  	                 
+  	                     } while (!validInput); 
+  	               
+ 	       
+ 	            }
+ 	        }
+
+
+ 	        // calculation multiply
+ 	        double[][] result = multiplyMatrices(matrix1, matrix2);
+
+ 	       System.out.println("Your first matrix:");
+ 	       
+ 	       for(double[] row : matrix1 ) {
+ 	    	   for(double val : row) {
+ 	    		   
+ 	    		  System.out.printf("%10.2f\t",val);
+ 	    		   
+ 	    	   }
+ 	    	   System.out.println();
+ 	    	   
+ 	       }
+ 	      
+ 	      System.out.println("Your second matrix:");
+ 	      for(double[] row : matrix2 ) {
+	    	   for(double val : row) {
+	    		   
+	    		  System.out.printf("%10.2f\t",val);
+	    		   
+	    	   }
+	    	   
+	    	   System.out.println();
+	       }
+ 	        
+
+ 	        // print result on the screen 
+ 	        System.out.println("Calculated matrix result:");
+ 	        
+ 	       for (int i = 0; i < result.length; i++) {
+ 	            for (int j = 0; j < result[i].length; j++) {
+ 	            	System.out.printf("%10.2f\t",result[i][j]);
+ 	            }
+ 	            System.out.println();
+ 	        }
+ 	        
+
+ 	       
+ 	       int isReturned= returnPreviousMenu();
+ 	       
+ 			if(isReturned==1) {
+ 				subMenu();
+ 				
+ 			}
+ 			else{
+ 				matrixMultiplication();
+ 			}
+ 	
+ 	       
+ 		}
+
+    	 }
+	        
+
+	    public static double[][] multiplyMatrices(double[][] mat1, double[][] mat2) {
+	        int m = mat1.length;          // first matrix's rows value
+	        int n = mat1[0].length;       // first matrix's columns value
+	        int p = mat2[0].length;       // second matrix's columns value
+
+	        double[][] result = new double[m][p];
+
+	        //matrix multiplying 
+	        for (int i = 0; i < m; i++) {
+	            for (int j = 0; j < p; j++) {
+	                result[i][j] = 0;
+	                for (int k = 0; k < n; k++) {
+	                    result[i][j] += mat1[i][k] * mat2[k][j];
+	                }
+	            }
+	        }
+
+	        return result;
 
 	}
 
+	
+
+	    
 	public static void element_wiseMultiplication() {
-		//
+		
+		System.out.println("\n[d] Element-wise Multiplication\n");
+		Scanner input6 = new Scanner(System.in);
+        int r=0;
+        int c=0;
+
+        
+        boolean isAnswerValid=true;
+        String answer="";
+        
+        
+        do {
+            try {
+            	
+	        	if(isAnswerValid==false) {
+	        		System.out.println("Please enter a valid row number for matrices:");
+	        		
+	        	}
+	        	else {
+	        		 System.out.print("Please enter a row number for matrices:");
+		        	
+	        	}
+	        	
+	        	answer=input6.nextLine();
+	        	r= Integer.parseInt(answer);
+	        	if(r<=0) {
+	        		isAnswerValid=false;
+	        	}
+	        	else {
+	        		isAnswerValid=true;
+	        	}
+	        
+            }catch(NumberFormatException e) {
+            	System.out.println(e);
+            	isAnswerValid=false;
+            	
+            	}
+            
+        } while (!isAnswerValid);
+        
+        
+        
+        do {
+            try {
+            	
+	        	if(isAnswerValid==false) {
+	        		System.out.println("Please enter a valid column number for matrices:");
+	        		
+	        	}
+	        	else {
+	        		 System.out.print("Please enter a column number for matrices:");
+		        	
+	        	}
+	        	
+	        	answer=input6.nextLine();
+	        	c= Integer.parseInt(answer);
+	        	if(c<=0) {
+	        		isAnswerValid=false;
+	        	}
+	        	else {
+	        		isAnswerValid=true;
+	        	}
+	        
+            }catch(NumberFormatException e) {
+            	System.out.println(e);
+            	isAnswerValid=false;
+            	
+            	}
+            
+        } while (!isAnswerValid);
+        
+        double[][] matrix1 = new double[r][c];
+		double[][] matrix2 = new double[r][c];
+		double[][] matrixR = new double[r][c];
+        
+        
+
+	        
+	        // get first matrix's value
+	        System.out.println("Please enter first matrix values:");
+	        for (int i = 0; i < r; i++) {
+	            for (int j = 0; j < c; j++) {
+	            	
+	            	 do {
+	                   	try {
+	                   	 if (isAnswerValid==false) { 
+	                       	 System.out.println("Invalid input. Please enter a double number:");
+	                           
+	                        }else {
+	                       	 System.out.printf("Enter matrix1[%d][%d] values: ", i,j);
+	                        }
+	              
+	                     answer=input6.nextLine();
+	                   	 matrix1[i][j] = Double.parseDouble(answer);
+	                   	isAnswerValid=true;
+	                   	
+	                   	 }catch(NumberFormatException e) {
+	                   		 System.out.println(e);
+	                   		isAnswerValid=false;
+	                   	 }
+	                 
+	                     } while (!isAnswerValid); 
+	               
+	            	
+	            }
+	        }
+	        
+	        
+	        System.out.println("Please enter second matrix values:");
+ 	        for (int i = 0; i < r; i++) {
+ 	            for (int j = 0; j < c; j++) {
+ 	            	
+ 	            	 do {
+  	                   	try {
+  	                   	 if (isAnswerValid==false) { 
+  	                       	 System.out.println("Invalid input. Please enter a double number:");
+  	                           
+  	                        }else {
+  	                       	 System.out.printf("Enter matrix2[%d][%d] values: ", i,j);
+  	                        }
+  	              
+  	                     answer=input6.nextLine();
+  	                   	 matrix2[i][j] = Double.parseDouble(answer);
+  	                   isAnswerValid=true;
+  	                   	
+  	                   	 }catch(NumberFormatException e) {
+  	                   		 System.out.println(e);
+  	                   	isAnswerValid=false;
+  	                   	 }
+  	                 
+  	                     } while (!isAnswerValid); 
+  	               
+ 	            }
+ 	        }
+		
+ 	       for(int i=0; i<r; i++){
+				for(int j=0; j<c; j++){
+					matrixR[i][j] = matrix1[i][j]*matrix2[i][j];
+				}
+			}
+ 	       
+ 	       
+ 	      System.out.println("Your first matrix:");
+	       
+	       for(double[] row : matrix1 ) {
+	    	   for(double val : row) {
+	    		   
+	    		  System.out.printf("%10.2f\t",val);
+	    		   
+	    	   }
+	    	   System.out.println();
+	    	   
+	       }
+	      
+	      System.out.println("Your second matrix:");
+	      for(double[] row : matrix2 ) {
+	    	   for(double val : row) {
+	    		   
+	    		  System.out.printf("%10.2f\t",val);
+	    		   
+	    	   }
+	    	   
+	    	   System.out.println();
+	       }
+ 	       
+ 	      
+ 	
+			System.out.println("Element-wise multiplication:");
+			for (int i = 0; i < r; i++) {
+				for (int j = 0; j < c; j++) {
+					System.out.printf("%10.2f\t",matrixR[i][j]);
+           
+				}
+				System.out.print("\n");
+			}
+		
+			 
+	 	       int isReturned= returnPreviousMenu();
+	 	       
+	 			if(isReturned==1) {
+	 				subMenu();
+	 				
+	 			}
+	 			else{
+	 				element_wiseMultiplication();
+	 			}
+	 			
+	 		
+	 			
 	}
+		
+		
+		
 
 	public static void returnMenu(){
-         //
+		
+		displayMenu();
+        
 	}
 
 
+
+	public static int returnPreviousMenu() {
+		String restartOperation;
+		boolean isValidAnswer=true;
+		Scanner input= new Scanner(System.in);
+		do {
+			
+			if(isValidAnswer==false) {
+				System.out.println("Please enter the valid character. Do you want to return to the previous menu? (Y/N):");
+	
+			}else {
+				System.out.println("Do you want to return to the previous menu? (Y/N):");
+			}
+			
+			restartOperation= input.nextLine();
+			if(restartOperation.equals("Y")) {
+				return 1;
+			}
+			else if(restartOperation.equals("N")) {
+				return 0;
+			}
+			else {
+				isValidAnswer=false;
+			}
+		
+			
+		}while(!isValidAnswer);
+		
+		return 0;
+	}
+	
 
 
 
@@ -411,6 +1099,12 @@ public class ConsoleApplication {
 
 	}
 
+	
+	/**This method prints the game board.
+	 * 
+	 * @param board the board of tic-tac-toe game.
+	 */
+	
 	public static void printGameBoard(char board[][]){
 
 		System.out.println("-------------"); 
@@ -427,6 +1121,12 @@ public class ConsoleApplication {
 
 	}
 
+	/**
+	 * This method asks the player to choose a number between 1 and 9 for the placement of their symbol.
+	 * @param player_name name entered by player
+	 * @return choice of the player
+	 */
+	
 	public static int getChoice(String player_name){
 		
 		boolean validAnswer=true;
@@ -470,6 +1170,14 @@ public class ConsoleApplication {
 
 	}
 
+	/**
+	 * This method checks whether the player's choice is valid. 
+	 * @param board the board of tic-tac-toe game.
+	 * @param choice choice of the player for the placement of their symbol.
+	 * @return The status of whether the player's choice is valid or not
+	 */
+	
+	
 	public static int moveValidation(char[][] board,int choice){
 		int validateMove;
 			switch(choice){
@@ -516,6 +1224,12 @@ public class ConsoleApplication {
 
 	}
 	
+	/**
+	 * This method allows to keep track of the order of the players to play the game.
+	 * @param current_player the current player's number. These numbers are 1 for Player1 (X), 2 for PLayer2 (O)
+	 * @return the player's number whose turn it is to play.
+	 */
+	
 	public static int changePlayer(int current_player) {
 		int currentPlayer;
 		
@@ -524,6 +1238,11 @@ public class ConsoleApplication {
 		return currentPlayer;
 		
 	}
+	
+	
+	
+	
+	
 	
 	public static boolean gameWinCheck(char [][] board, char currentSymbol){
 
@@ -659,10 +1378,6 @@ public class ConsoleApplication {
 	}
 	
 
-	
-	
-	
-	
 	
 	public static void optionE() {}
 
