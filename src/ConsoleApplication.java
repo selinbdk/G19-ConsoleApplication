@@ -311,7 +311,7 @@ public class ConsoleApplication {
             }
             System.out.println();
         }
-
+		
     }
 
 
@@ -396,6 +396,7 @@ public class ConsoleApplication {
             }
         }
 
+
         // calculation multiply
         int[][] result = multiplyMatrices(matrixA, matrixB);
 
@@ -407,6 +408,7 @@ public class ConsoleApplication {
             }
             System.out.println();
         }
+		displayMenu();
 	}
 
     public static int[][] multiplyMatrices(int[][] mat1, int[][] mat2) {
@@ -427,7 +429,6 @@ public class ConsoleApplication {
         }
 
         return result;
-    
 
 }
 
@@ -435,12 +436,60 @@ public class ConsoleApplication {
 
 	
 
-	public static void element_wiseMultiplication() {
-		//
-	}
+	public static void element_wiseMultiplication() {//------------------------------------------
+		
+		Scanner input6 = new Scanner(System.in);
+        int r, c;
+
+		
+
+
+        while (true) {
+            System.out.print("Please enter a matrixs number of rows :");
+            r = input6.nextInt();
+            System.out.print("Please enter a matrixs number of columns:");
+            c = input6.nextInt();
+			int[][] matrixA = new int[r][c];
+       		int[][] matrixB = new int[r][c];
+			int[][] matrixR = new int[r][c];
+
+
+            //get first matrix values by user
+			for(int i=0; i<r; i++){
+				for(int j=0; j<c; j++){
+					System.out.print("Please enter a first matrix [" + i + "][" + j + "] = ");
+					matrixA[i][j] = input6.nextInt();
+				}												
+			}
+            // get second matrix values by user
+            for(int i=0; i<r; i++){
+				for(int j=0; j<c; j++){
+					System.out.print("Please enter a second matrix [" + i + "][" + j + "] = ");
+					matrixB[i][j] = input6.nextInt();
+				}												
+			}
+			
+			
+			for(int i=0; i<r; i++){
+				for(int j=0; j<c; j++){
+					matrixR[i][j] = matrixA[i][j]*matrixB[i][j];
+				}
+			}
+			System.out.print("Element-wise multiplication:"+ " \n");
+			for (int i = 0; i < r; i++) {
+				for (int j = 0; j < c; j++) {
+					System.out.print(matrixR[i][j] + " ");
+            
+				}
+				System.out.print("\n");
+			}
+			displayMenu();
+		}
+}//--------------------------------------
+
 
 	public static void returnMenu(){
-         //
+         displayMenu();
 	}
 
 
