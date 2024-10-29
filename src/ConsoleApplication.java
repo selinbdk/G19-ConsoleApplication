@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 
 public class ConsoleApplication {
@@ -16,6 +15,7 @@ public class ConsoleApplication {
 		String[] teamMembers= {
 				
 		"********************",
+		"",
 		"*     GROUP19      *",
 		"*   SELIN BUDAK    *",
 		"* TUGBA CAGLAGONUL *",
@@ -32,8 +32,8 @@ public class ConsoleApplication {
            "|||||||||||",
            "|  _   _  |",
            "|  o   o  |",
-           "| \\_____/ |",
-           "\\_________/",
+           "| \\_/ |",
+           "\\_/",
    
 
 
@@ -42,8 +42,8 @@ public class ConsoleApplication {
         String[] welcomeMessage= {
         "__      _____ _    ___ ___  __  __ ___",
         "\\ \\    / / __| |  /  _/ _ \\|  \\/  | __|",
-        " \\ \\/\\/ /| _|| |_ | (_|(_) | |\\/| | _| ",
-        "  \\_/\\_/ |___|____\\___\\___/|_|  |_|___|",
+        " \\ \\/\\/ /| || | | (|() | |\\/| | _| ",
+        "  \\/\\/ ||\\\\/||  |||",
             
         };
 
