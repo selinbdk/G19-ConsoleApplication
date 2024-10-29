@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 
 public class ConsoleApplication {
@@ -14,14 +13,14 @@ public class ConsoleApplication {
 		
 		String[] teamMembers= {
 				
-		"*******************",
-		"*     GROUP19     *",
-		"*   SELIN BUDAK   *",
-		"* TUGBA CAGLAGONUL*",
-		"*   BEYZA AKIN    *",
-		"* BERKAY KARATAS  *",
-		"* FURKAN KAPUSUZ  *",
-		"*******************"
+		"",
+		"*     GROUP19      *",
+		"*   SELIN BUDAK    *",
+		"* TUGBA CAGLAGONUL *",
+		"* EKMEL BEYZA AKIN *",
+		"* BERKAY KARATAS   *",
+		"* FURKAN KAPUSUZ   *",
+		""
 				
 		};
 
@@ -31,8 +30,8 @@ public class ConsoleApplication {
            "|||||||||||",
            "|  _   _  |",
            "|  o   o  |",
-           "| \\_____/ |",
-           "\\_________/",
+           "| \\_/ |",
+           "\\_/",
    
 
 
@@ -41,8 +40,8 @@ public class ConsoleApplication {
         String[] welcomeMessage= {
         "__      _____ _    ___ ___  __  __ ___",
         "\\ \\    / / __| |  /  _/ _ \\|  \\/  | __|",
-        " \\ \\/\\/ /| _|| |_ | (_|(_) | |\\/| | _| ",
-        "  \\_/\\_/ |___|____\\___\\___/|_|  |_|___|",
+        " \\ \\/\\/ /| || | | (|() | |\\/| | _| ",
+        "  \\/\\/ ||\\\\/||  |||",
             
         };
 
@@ -172,7 +171,7 @@ public class ConsoleApplication {
 				inverse();
 				break;
 			case "c":
-				matrixMultiplation();
+				matrixMultiplication();
 				break;
 
 			case "d":
@@ -192,6 +191,7 @@ public class ConsoleApplication {
 
 	public static void transpose() {
 		
+		System.out.println("\n[a] Transpose");
 
         Scanner input3 = new Scanner(System.in);
         boolean isAnswerValid=true;
@@ -311,188 +311,540 @@ public class ConsoleApplication {
             }
             System.out.println();
         }
+
 		
+
     }
 
 
-	public static void inverse() {//--------------------------------------------------
-/*
-		//matris alınırken row ve column un değerinin aynı olup olmadığı kontrol edilecek eğer aynıysa hesaplanıcak yoksa tekrar değer istenecek.
-		double[][] matrix = {};// matris alınacak.
+	public static void inverse() {
 
-        double determinant = calculateDeterminant(matrix);
+        //
+	}
 
-        if (determinant != 0) {
-            System.out.println("The determinant of the matrix is different from zero, its inverse can be calculated:");
-        } else {
-            System.out.println("The determinant of the matrix is zero, the inverse of the matrix cannot be calculated .");
-        }
-    }
+	public static void matrixMultiplication() {
+		
+		System.out.println("\n[c] Matrix Multiplication\n");
+	      
+	        Scanner input5 = new Scanner(System.in);
+	        int m1=0;
+	        int m2=0;
+	        int n1=0;
+	        int n2=0;
 
-    public static double calculateDeterminant(double[][] matrix) {
-        int n = matrix.length;
-
-        if (n == 1) {
-            
-            return matrix[0][0];
-        }
-        if (n == 2) {
+	        boolean isAnswerValid=true;
+	        String answer="";
+	        
+	        
+	        do {
+	            try {
+	            	
+		        	if(isAnswerValid==false) {
+		        		System.out.println("Please enter a valid row number for first matrix:");
+		        		
+		        	}
+		        	else {
+		        		 System.out.print("Please enter a first matrix row:");
+			        	
+		        	}
+		        	
+		        	answer=input5.nextLine();
+		        	m1= Integer.parseInt(answer);
+		        	if(m1<=0) {
+		        		isAnswerValid=false;
+		        	}
+		        	else {
+		        		isAnswerValid=true;
+		        	}
+		        
+	            }catch(NumberFormatException e) {
+	            	System.out.println(e);
+	            	isAnswerValid=false;
+	            	
+	            	}
+	            
+	        } while (!isAnswerValid);
+	        
+	        
+	        
+	        do {
+	            try {
+	            	
+		        	if(isAnswerValid==false) {
+		        		System.out.println("Please enter a valid column number for first matrix:");
+		        		
+		        	}
+		        	else {
+		        		 System.out.print("Please enter a first matrix column:");
+			        	
+		        	}
+		        	
+		        	answer=input5.nextLine();
+		        	n1= Integer.parseInt(answer);
+		        	if(n1<=0) {
+		        		isAnswerValid=false;
+		        	}
+		        	else {
+		        		isAnswerValid=true;
+		        	}
+		        	
+		        
+	            }catch(NumberFormatException e) {
+	            	System.out.println(e);
+	            	isAnswerValid=false;
+	            	
+	            	}
+	            
+	        } while (!isAnswerValid);
+	        
+	        
+	        do {
+	            try {
+	            	
+		        	if(isAnswerValid==false) {
+		        		System.out.println("Please enter a valid row number for second matrix:");
+		        		
+		        	}
+		        	else {
+		        		 System.out.print("Please enter a second matrix row:");
+			        	
+		        	}
+		        	
+		        	answer=input5.nextLine();
+		        	m2= Integer.parseInt(answer);
+		        	if(m2<=0) {
+		        		isAnswerValid=false;
+		        	}
+		        	else {
+		        		isAnswerValid=true;
+		        	}
+		        
+		        
+	            }catch(NumberFormatException e) {
+	            	System.out.println(e);
+	            	isAnswerValid=false;
+	            	
+	            	}
+	            
+	        } while (!isAnswerValid);
+	        
+	    
+	        do {
+	            try {
+	            	
+		        	if(isAnswerValid==false) {
+		        		System.out.println("Please enter a valid column number for second matrix:");
+		        		
+		        	}
+		        	else {
+		        		 System.out.print("Please enter a second matrix column:");
+			        	
+		        	}
+		        	
+		        	answer=input5.nextLine();
+		        	n2= Integer.parseInt(answer);
+		        	if(n2<=0) {
+		        		isAnswerValid=false;
+		        	}
+		        	else {
+		        		isAnswerValid=true;
+		        	}
+		        	
+		        
+	            }catch(NumberFormatException e) {
+	            	System.out.println(e);
+	            	isAnswerValid=false;
+	            	
+	            	}
+	            
+	        } while (!isAnswerValid);
         
-            return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
-        }
+       
+    	 if(n1!=m2) {
+    		 System.out.println("Please valid input.First matrix columns must equal second matrix rows input.");
+    		 matrixMultiplication();
+    		 
+    	 }else {
 
-		double determinant = 0;
-		//devamında diğer değrler için hesaplanacak.
+    		 
+ 	        double[][] matrix1 = new double[m1][n1];
+ 	        double[][] matrix2 = new double[m2][n2];
 
-        //----------------------------------------------------------
+ 	        
+ 	        boolean validInput=true;
+ 	        
+ 	        // get first matrix's value
+ 	        System.out.println("Please enter first matrix values:");
+ 	        for (int i = 0; i < m1; i++) {
+ 	            for (int j = 0; j < n1; j++) {
+ 	            	
+ 	            	 do {
+ 	                   	try {
+ 	                   	 if (validInput==false) { 
+ 	                       	 System.out.println("Invalid input. Please enter a double number:");
+ 	                           
+ 	                        }else {
+ 	                       	 System.out.printf("Enter matrix1[%d][%d] values: ", i,j);
+ 	                        }
+ 	              
+ 	                     answer=input5.nextLine();
+ 	                   	 matrix1[i][j] = Double.parseDouble(answer);
+ 	                   	 validInput=true;
+ 	                   	
+ 	                   	 }catch(NumberFormatException e) {
+ 	                   		 System.out.println(e);
+ 	                   		 validInput=false;
+ 	                   	 }
+ 	                 
+ 	                     } while (!validInput); 
+ 	               
+ 	            	
+ 	            }
+ 	        }
+
+ 	        // get second matrix value.
+ 	        System.out.println("Please enter second matrix values:");
+ 	        for (int i = 0; i < m2; i++) {
+ 	            for (int j = 0; j < n2; j++) {
+ 	            	
+ 	            	 do {
+  	                   	try {
+  	                   	 if (validInput==false) { 
+  	                       	 System.out.println("Invalid input. Please enter a double number:");
+  	                           
+  	                        }else {
+  	                       	 System.out.printf("Enter matrix2[%d][%d] values: ", i,j);
+  	                        }
+  	              
+  	                     answer=input5.nextLine();
+  	                   	 matrix2[i][j] = Double.parseDouble(answer);
+  	                   	 validInput=true;
+  	                   	
+  	                   	 }catch(NumberFormatException e) {
+  	                   		 System.out.println(e);
+  	                   		 validInput=false;
+  	                   	 }
+  	                 
+  	                     } while (!validInput); 
+  	               
+ 	       
+ 	            }
+ 	        }
+
+
+ 	        // calculation multiply
+ 	        double[][] result = multiplyMatrices(matrix1, matrix2);
+
+ 	       System.out.println("Your first matrix:");
+ 	       
+ 	       for(double[] row : matrix1 ) {
+ 	    	   for(double val : row) {
+ 	    		   
+ 	    		  System.out.printf("%10.2f\t",val);
+ 	    		   
+ 	    	   }
+ 	    	   System.out.println();
+ 	    	   
+ 	       }
+ 	      
+ 	      System.out.println("Your second matrix:");
+ 	      for(double[] row : matrix2 ) {
+	    	   for(double val : row) {
+	    		   
+	    		  System.out.printf("%10.2f\t",val);
+	    		   
+	    	   }
+	    	   
+	    	   System.out.println();
+	       }
+ 	        
+
+ 	        // print result on the screen 
+ 	        System.out.println("Calculated matrix result:");
+ 	        
+ 	       for (int i = 0; i < result.length; i++) {
+ 	            for (int j = 0; j < result[i].length; j++) {
+ 	            	System.out.printf("%10.2f\t",result[i][j]);
+ 	            }
+ 	            System.out.println();
+ 	        }
+ 	        
+
+ 	       
+ 	       int isReturned= returnSubMenu();
+ 	       
+ 			if(isReturned==1) {
+ 				subMenu();
+ 				
+ 			}
+ 			else{
+ 				matrixMultiplication();
+ 			}
+ 	
+ 	       
+ 		}
+
+    	 }
+	        
+
+	    public static double[][] multiplyMatrices(double[][] mat1, double[][] mat2) {
+	        int m = mat1.length;          // first matrix's rows value
+	        int n = mat1[0].length;       // first matrix's columns value
+	        int p = mat2[0].length;       // second matrix's columns value
+
+	        double[][] result = new double[m][p];
+
+	        //matrix multiplying 
+	        for (int i = 0; i < m; i++) {
+	            for (int j = 0; j < p; j++) {
+	                result[i][j] = 0;
+	                for (int k = 0; k < n; k++) {
+	                    result[i][j] += mat1[i][k] * mat2[k][j];
+	                }
+	            }
+	        }
+
+	        return result;
+
 	}
-*/
-	}
-	public static void matrixMultiplation() {// burdaki eksiklik inputları harf olarakta girilebilirbunu engellemek lazım.
-      //-------------------------------------------
-	  
-
-        Scanner input5 = new Scanner(System.in);
-        int m1, n1, m2, n2;
-
-
-        while (true) {
-            System.out.print("Please enter a first matrix row:");
-            m1 = input5.nextInt();
-            System.out.print("Please enter a first matrix columns:");
-            n1 = input5.nextInt();
-
-            System.out.print("Please enter a second matrix row:");
-            m2 = input5.nextInt();
-            System.out.print("Please enter a second matrix columns:");
-            n2 = input5.nextInt();
-
-            // check inputs for square matrix
-            if (n1 == m2) {
-                break;
-            } else {
-                System.out.println("Please valid input.First matrix columns must equal second matrix rows input. Try again:");
-            }
-        }
-
-        int[][] matrixA = new int[m1][n1];
-        int[][] matrixB = new int[m2][n2];
-
-        // get first matrixs value
-        System.out.println("Please enter first matrix values:");
-        for (int i = 0; i < m1; i++) {
-            for (int j = 0; j < n1; j++) {
-                System.out.print("matrixA[" + i + "][" + j + "] = ");
-                matrixA[i][j] = input5.nextInt();
-            }
-        }
-
-        // get second matrix value.
-        System.out.println("Please enter second matrix values:");
-        for (int i = 0; i < m2; i++) {
-            for (int j = 0; j < n2; j++) {
-                System.out.print("matrixB[" + i + "][" + j + "] = ");
-                matrixB[i][j] = input5.nextInt();
-            }
-        }
-
-
-        // calculation multiply
-        int[][] result = multiplyMatrices(matrixA, matrixB);
-
-        // print result on the screen 
-        System.out.println("Calculated matrix result:");
-        for (int[] row : result) {
-            for (int val : row) {
-                System.out.print(val + " ");
-            }
-            System.out.println();
-        }
-		displayMenu();
-	}
-
-    public static int[][] multiplyMatrices(int[][] mat1, int[][] mat2) {
-        int m = mat1.length;          // first matrixs rows value
-        int n = mat1[0].length;       // first matrixs columns value
-        int p = mat2[0].length;       // second matrixs columns value
-
-        int[][] result = new int[m][p];
-
-        //matrix multiplying 
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < p; j++) {
-                result[i][j] = 0;
-                for (int k = 0; k < n; k++) {
-                    result[i][j] += mat1[i][k] * mat2[k][j];
-                }
-            }
-        }
-
-        return result;
-
-}
-
-	  //---------------------------------------
 
 	
 
-	public static void element_wiseMultiplication() {//------------------------------------------
+	    
+	public static void element_wiseMultiplication() {
 		
+		System.out.println("\n[d] Element-wise Multiplication\n");
 		Scanner input6 = new Scanner(System.in);
-        int r, c;
+        int r=0;
+        int c=0;
 
+        
+        boolean isAnswerValid=true;
+        String answer="";
+        
+        
+        do {
+            try {
+            	
+	        	if(isAnswerValid==false) {
+	        		System.out.println("Please enter a valid row number for matrices:");
+	        		
+	        	}
+	        	else {
+	        		 System.out.print("Please enter a row number for matrices:");
+		        	
+	        	}
+	        	
+	        	answer=input6.nextLine();
+	        	r= Integer.parseInt(answer);
+	        	if(r<=0) {
+	        		isAnswerValid=false;
+	        	}
+	        	else {
+	        		isAnswerValid=true;
+	        	}
+	        
+            }catch(NumberFormatException e) {
+            	System.out.println(e);
+            	isAnswerValid=false;
+            	
+            	}
+            
+        } while (!isAnswerValid);
+        
+        
+        
+        do {
+            try {
+            	
+	        	if(isAnswerValid==false) {
+	        		System.out.println("Please enter a valid column number for matrices:");
+	        		
+	        	}
+	        	else {
+	        		 System.out.print("Please enter a column number for matrices:");
+		        	
+	        	}
+	        	
+	        	answer=input6.nextLine();
+	        	c= Integer.parseInt(answer);
+	        	if(c<=0) {
+	        		isAnswerValid=false;
+	        	}
+	        	else {
+	        		isAnswerValid=true;
+	        	}
+	        
+            }catch(NumberFormatException e) {
+            	System.out.println(e);
+            	isAnswerValid=false;
+            	
+            	}
+            
+        } while (!isAnswerValid);
+        
+        double[][] matrix1 = new double[r][c];
+		double[][] matrix2 = new double[r][c];
+		double[][] matrixR = new double[r][c];
+        
+        
+
+	        
+	        // get first matrix's value
+	        System.out.println("Please enter first matrix values:");
+	        for (int i = 0; i < r; i++) {
+	            for (int j = 0; j < c; j++) {
+	            	
+	            	 do {
+	                   	try {
+	                   	 if (isAnswerValid==false) { 
+	                       	 System.out.println("Invalid input. Please enter a double number:");
+	                           
+	                        }else {
+	                       	 System.out.printf("Enter matrix1[%d][%d] values: ", i,j);
+	                        }
+	              
+	                     answer=input6.nextLine();
+	                   	 matrix1[i][j] = Double.parseDouble(answer);
+	                   	isAnswerValid=true;
+	                   	
+	                   	 }catch(NumberFormatException e) {
+	                   		 System.out.println(e);
+	                   		isAnswerValid=false;
+	                   	 }
+	                 
+	                     } while (!isAnswerValid); 
+	               
+	            	
+	            }
+	        }
+	        
+	        
+	        System.out.println("Please enter second matrix values:");
+ 	        for (int i = 0; i < r; i++) {
+ 	            for (int j = 0; j < c; j++) {
+ 	            	
+ 	            	 do {
+  	                   	try {
+  	                   	 if (isAnswerValid==false) { 
+  	                       	 System.out.println("Invalid input. Please enter a double number:");
+  	                           
+  	                        }else {
+  	                       	 System.out.printf("Enter matrix2[%d][%d] values: ", i,j);
+  	                        }
+  	              
+  	                     answer=input6.nextLine();
+  	                   	 matrix2[i][j] = Double.parseDouble(answer);
+  	                   isAnswerValid=true;
+  	                   	
+  	                   	 }catch(NumberFormatException e) {
+  	                   		 System.out.println(e);
+  	                   	isAnswerValid=false;
+  	                   	 }
+  	                 
+  	                     } while (!isAnswerValid); 
+  	               
+ 	            }
+ 	        }
 		
-
-
-        while (true) {
-            System.out.print("Please enter a matrixs number of rows :");
-            r = input6.nextInt();
-            System.out.print("Please enter a matrixs number of columns:");
-            c = input6.nextInt();
-			int[][] matrixA = new int[r][c];
-       		int[][] matrixB = new int[r][c];
-			int[][] matrixR = new int[r][c];
-
-
-            //get first matrix values by user
-			for(int i=0; i<r; i++){
+ 	       for(int i=0; i<r; i++){
 				for(int j=0; j<c; j++){
-					System.out.print("Please enter a first matrix [" + i + "][" + j + "] = ");
-					matrixA[i][j] = input6.nextInt();
-				}												
-			}
-            // get second matrix values by user
-            for(int i=0; i<r; i++){
-				for(int j=0; j<c; j++){
-					System.out.print("Please enter a second matrix [" + i + "][" + j + "] = ");
-					matrixB[i][j] = input6.nextInt();
-				}												
-			}
-			
-			
-			for(int i=0; i<r; i++){
-				for(int j=0; j<c; j++){
-					matrixR[i][j] = matrixA[i][j]*matrixB[i][j];
+					matrixR[i][j] = matrix1[i][j]*matrix2[i][j];
 				}
 			}
-			System.out.print("Element-wise multiplication:"+ " \n");
+ 	       
+ 	       
+ 	      System.out.println("Your first matrix:");
+	       
+	       for(double[] row : matrix1 ) {
+	    	   for(double val : row) {
+	    		   
+	    		  System.out.printf("%10.2f\t",val);
+	    		   
+	    	   }
+	    	   System.out.println();
+	    	   
+	       }
+	      
+	      System.out.println("Your second matrix:");
+	      for(double[] row : matrix2 ) {
+	    	   for(double val : row) {
+	    		   
+	    		  System.out.printf("%10.2f\t",val);
+	    		   
+	    	   }
+	    	   
+	    	   System.out.println();
+	       }
+ 	       
+ 	      
+ 	
+			System.out.println("Element-wise multiplication:");
 			for (int i = 0; i < r; i++) {
 				for (int j = 0; j < c; j++) {
-					System.out.print(matrixR[i][j] + " ");
-            
+					System.out.printf("%10.2f\t",matrixR[i][j]);
+           
 				}
 				System.out.print("\n");
 			}
-			displayMenu();
-		}
-}//--------------------------------------
-
+		
+			 
+	 	       int isReturned= returnSubMenu();
+	 	       
+	 			if(isReturned==1) {
+	 				subMenu();
+	 				
+	 			}
+	 			else{
+	 				element_wiseMultiplication();
+	 			}
+	 			
+	 			
+	 			
+	 			
+	}
+		
+		
+		
 
 	public static void returnMenu(){
-         displayMenu();
+		
+		displayMenu();
+        
 	}
 
 
+
+	public static int returnSubMenu() {
+		String restartOperation;
+		boolean isValidAnswer=true;
+		Scanner input= new Scanner(System.in);
+		do {
+			
+			if(isValidAnswer==false) {
+				System.out.println("Please enter the valid character. Do you want to return to the submenu? (Y/N):");
+	
+			}else {
+				System.out.println("Do you want to return to the submenu? (Y/N):");
+			}
+			
+			restartOperation= input.nextLine();
+			if(restartOperation.equals("Y")) {
+				return 1;
+			}
+			else if(restartOperation.equals("N")) {
+				return 0;
+			}
+			else {
+				isValidAnswer=false;
+			}
+		
+			
+		}while(!isValidAnswer);
+		
+		return 0;
+	}
+	
 
 
 
@@ -570,6 +922,12 @@ public class ConsoleApplication {
 
 	}
 
+	
+	/**This method prints the game board.
+	 * 
+	 * @param board the board of tic-tac-toe game.
+	 */
+	
 	public static void printGameBoard(char board[][]){
 
 		System.out.println("-------------"); 
@@ -586,6 +944,12 @@ public class ConsoleApplication {
 
 	}
 
+	/**
+	 * This method asks the player to choose a number between 1 and 9 for the placement of their symbol.
+	 * @param player_name name entered by player
+	 * @return choice of the player
+	 */
+	
 	public static int getChoice(String player_name){
 		
 		boolean validAnswer=true;
@@ -629,6 +993,14 @@ public class ConsoleApplication {
 
 	}
 
+	/**
+	 * This method checks whether the player's choice is valid. 
+	 * @param board the board of tic-tac-toe game.
+	 * @param choice choice of the player for the placement of their symbol.
+	 * @return The status of whether the player's choice is valid or not
+	 */
+	
+	
 	public static int moveValidation(char[][] board,int choice){
 		int validateMove;
 			switch(choice){
@@ -675,6 +1047,12 @@ public class ConsoleApplication {
 
 	}
 	
+	/**
+	 * This method allows to keep track of the order of the players to play the game.
+	 * @param current_player the current player's number. These numbers are 1 for Player1 (X), 2 for PLayer2 (O)
+	 * @return the player's number whose turn it is to play.
+	 */
+	
 	public static int changePlayer(int current_player) {
 		int currentPlayer;
 		
@@ -683,6 +1061,11 @@ public class ConsoleApplication {
 		return currentPlayer;
 		
 	}
+	
+	
+	
+	
+	
 	
 	public static boolean gameWinCheck(char [][] board, char currentSymbol){
 
