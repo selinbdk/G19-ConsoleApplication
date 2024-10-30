@@ -1,4 +1,7 @@
+
 import java.util.Scanner;
+
+
 
 public class ConsoleApplication {
     public static void main(String[] args) {
@@ -8,14 +11,12 @@ public class ConsoleApplication {
 		
 
     }
-	
 
     public static void displayIntro() {
 		
 		String[] teamMembers= {
 				
 		"********************",
-		"",
 		"*     GROUP19      *",
 		"*   SELIN BUDAK    *",
 		"* TUGBA CAGLAGONUL *",
@@ -32,8 +33,8 @@ public class ConsoleApplication {
            "|||||||||||",
            "|  _   _  |",
            "|  o   o  |",
-           "| \\_/ |",
-           "\\_/",
+           "| \\_____/ |",
+           "\\_________/",
    
 
 
@@ -42,8 +43,8 @@ public class ConsoleApplication {
         String[] welcomeMessage= {
         "__      _____ _    ___ ___  __  __ ___",
         "\\ \\    / / __| |  /  _/ _ \\|  \\/  | __|",
-        " \\ \\/\\/ /| || | | (|() | |\\/| | _| ",
-        "  \\/\\/ ||\\\\/||  |||",
+        " \\ \\/\\/ /| _|| |_ | (_|(_) | |\\/| | _| ",
+        "  \\_/\\_/ |___|____\\___\\___/|_|  |_|___|",
             
         };
 
@@ -94,6 +95,7 @@ public class ConsoleApplication {
 
 		switch (operation) {
 			case "A":
+				//System.out.print("\033c"); 
 				optionA();
 				break;
 			case "B":
@@ -490,6 +492,17 @@ public class ConsoleApplication {
             }
             System.out.println();
         }
+        
+        
+        int isReturned= returnPreviousMenu();
+	       
+			if(isReturned==1) {
+				subMenu();
+				
+			}
+			else{
+				transpose();
+			}
 
 		
 
@@ -1028,6 +1041,11 @@ public class ConsoleApplication {
 
 	public static void optionC() {}
 
+	
+	
+	/**
+	 * This function allows us to play the tic-tac-toe game. Other methods related to the operation of this game are followed in this function.
+	 */
 	public static void optionD() {
 		char[][] board= {{'1','2','3'},{'4','5','6'},{'7','8','9'}};
 		String[]playerNames= new String[2];
@@ -1164,8 +1182,6 @@ public class ConsoleApplication {
 			
 		}while(!validAnswer);
 		
-		
-		
 
 		return choice;
 
@@ -1227,7 +1243,7 @@ public class ConsoleApplication {
 	
 	/**
 	 * This method allows to keep track of the order of the players to play the game.
-	 * @param current_player the current player's number. These numbers are 1 for Player1 (X), 2 for PLayer2 (O)
+	 * @param current_player the current player's number. These numbers are 1 for Player1 (X), 2 for PLayer2 (O).
 	 * @return the player's number whose turn it is to play.
 	 */
 	
@@ -1242,8 +1258,12 @@ public class ConsoleApplication {
 	
 	
 	
-	
-	
+	/**
+	 * This method provides information whether there is a winning player in the game.
+	 * @param board the board of tic-tac-toe game.
+	 * @param currentSymbol symbol of the current player (X or O).
+	 * @return true if there is a winning player in the game, false otherwise.
+	 */
 	
 	public static boolean gameWinCheck(char [][] board, char currentSymbol){
 
@@ -1277,6 +1297,13 @@ public class ConsoleApplication {
 	}	
 	
 	
+	
+	/**
+	 * This method allows us to obtain the symbols of the players.
+	 * @param current_player the current player's number. These numbers are 1 for Player1 (X), 2 for PLayer2 (O).
+	 * @return the current player's symbol.
+	 */
+	
 	public static char getSymbol(int current_player) {
 		char currentSymbol;
 		
@@ -1288,6 +1315,14 @@ public class ConsoleApplication {
 	}
 	
 
+	
+	/**
+	 * This method allows the player's symbol to be placed at the desired location.
+	 * @param board the board of tic-tac-toe game.
+	 * @param choice choice of the player for the placement of their symbol.
+	 * @param symbol the current player's symbol.
+	 */
+	
 	public static void playGame(char board[][], int choice, char symbol){
 		
 		switch(choice){
@@ -1331,6 +1366,14 @@ public class ConsoleApplication {
 	}
 	
 	
+	
+	/**
+	 * This method prints the name of the winning player and the total number of turns.
+	 * @param playerNames array that collects the names entered by the player.
+	 * @param currentPlayer the current player's number. These numbers are 1 for Player1 (X), 2 for PLayer2 (O).
+	 * @param turns total number of turns in the game.
+	 */
+	
 	public static void displayLeader(String[] playerNames,int currentPlayer, int turns) {
 		
 		System.out.printf("Congratulations! You won %s%n",playerNames[currentPlayer-1]);
@@ -1339,6 +1382,11 @@ public class ConsoleApplication {
 	}
 	
 	
+	
+	/**
+	 * This method prints a message informing you that the game ended in a draw and the total number of turns.
+	 * @param turns total number of turns in the game.
+	 */
 	public static void displayDrawMessage(int turns) {
 			
 			System.out.printf("Draw!\n");
@@ -1347,6 +1395,11 @@ public class ConsoleApplication {
 	}
 	
 	
+	
+	/**
+	 * This method asks players if they want to play the game again.
+	 * @return if they want to play again, 1 is returned. If they don't want to play again, 0 is returned.
+	 */
 	
 	public static int replayGame() {
 		String restartGame;
